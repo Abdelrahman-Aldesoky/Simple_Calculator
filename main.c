@@ -29,15 +29,15 @@ int main(void)
 		 * if no key is pressed it returns a default value "-1" */
 		s8ReceivedKey = KPD_u8GetPressedKey();
 
-												/*Added a condition here for smoother operation and efficiency*/
-		if (s8ReceivedKey != DEFAULT) 			/*if the pressed key from the keypad is an actual key and not just the default value*/
+		/*Added a condition here for smoother operation and efficiency*/
+		if (s8ReceivedKey != DEFAULT) /*if the pressed key from the keypad is an actual key and not just the default value*/
 		{
 			/*if user pressed a number and equal flag is down. "equal must be followed with an operation can't press equal then start inputing a number"*/
 			if (NUMBER && EQUAL_FLAG_IS_DOWN)
 			{
-				s8OperationCount = 0; 			/*reset operation count since the user started entering numbers so he can select an operation next*/
+				s8OperationCount = 0; /*reset operation count since the user started entering numbers so he can select an operation next*/
 
-				switch (s8ReceivedKey) 			/*switch based on user input of number from 0-9*/
+				switch (s8ReceivedKey) /*switch based on user input of number from 0-9*/
 				{
 				case 0:
 					s32Number = CALC_GetNumber(s32Number, s8ReceivedKey); /*Function: CALC_GetNumber for doing multiple digits if entered by the user*/
@@ -71,37 +71,37 @@ int main(void)
 					break;
 				}
 			}
-			else if ((CALCULATION_CURRENT) && MULTIPLE_OPERATIONS) 	/*if the user changed his operation by pressing multiple operations in row take the last operation input by the user*/
+			else if ((CALCULATION_CURRENT) && MULTIPLE_OPERATIONS) /*if the user changed his operation by pressing multiple operations in row take the last operation input by the user*/
 			{
-				s8LastOperation = s8ReceivedKey; 					/*change operation to the current input by the user*/
+				s8LastOperation = s8ReceivedKey; /*change operation to the current input by the user*/
 			}
 			else if ((OPERATION) && NOT_MULTIPLE_OPERATIONS)
 			{
-				s8EqualFlag = FALSE; 								/*lower equal flag so user can enter a number next time if it was raised*/
-				s8OperationCount++;	 								/*increase operation by one to prevent user from entering two operations in row only one operation allowed*/
+				s8EqualFlag = FALSE; /*lower equal flag so user can enter a number next time if it was raised*/
+				s8OperationCount++;	 /*increase operation by one to prevent user from entering two operations in row only one operation allowed*/
 
-				if (s8ReceivedKey == EQUAL) 						/*if user input is equal, raise equal flag to prevent the user from entering numbers must enter an operation*/
+				if (s8ReceivedKey == EQUAL) /*if user input is equal, raise equal flag to prevent the user from entering numbers must enter an operation*/
 				{
 					s8EqualFlag = TRUE;
-					s8OperationCount = 0; 							/*reseting operation count so the user can select an operation*/
+					s8OperationCount = 0; /*reseting operation count so the user can select an operation*/
 				}
-				if ((CALCULATION) && (NOT_CLEAR)) 					/*if received key is ADD SUBTRACT MULTIPLY DIVIDE do the calculations it checks against last operation */
+				if ((CALCULATION) && (NOT_CLEAR)) /*if received key is ADD SUBTRACT MULTIPLY DIVIDE do the calculations it checks against last operation */
 				{
-					switch (s8LastOperation) 						/*switch on last operation since first operation means only one number in memory*/
+					switch (s8LastOperation) /*switch on last operation since first operation means only one number in memory*/
 					{
 					case ADD:
-						s64Result += s32Number; 					/*Addition Operation*/
+						s64Result += s32Number; /*Addition Operation*/
 						break;
 					case SUBTRACT:
-						s64Result -= s32Number; 					/*Subtraction Operation*/
+						s64Result -= s32Number; /*Subtraction Operation*/
 						break;
 					case MULTIPLY:
-						s64Result *= s32Number; 					/*Multiplication Operation*/
+						s64Result *= s32Number; /*Multiplication Operation*/
 						break;
 					case DIVIDE:
 						if (s32Number)
 						{
-							s64Result /= s32Number; 				/*Division Operation*/
+							s64Result /= s32Number; /*Division Operation*/
 						}
 						else
 						{
@@ -116,12 +116,12 @@ int main(void)
 						break;
 					}
 				}
-				else if (s64Result == 0) 			/*if result = zero*/
+				else if (s64Result == 0) /*if result = zero*/
 				{
-					s64Result = s32Number; 			/*take the number the user provided probably first input no result yet*/
+					s64Result = s32Number; /*take the number the user provided probably first input no result yet*/
 				}
-				s8LastOperation = s8ReceivedKey; 	/*always storing the last operation since the user can click multiple operations in row program only acts on the last one.*/
-				s32Number = 0;					 	/*Reset the number back to zero*/
+				s8LastOperation = s8ReceivedKey; /*always storing the last operation since the user can click multiple operations in row program only acts on the last one.*/
+				s32Number = 0;					 /*Reset the number back to zero*/
 				if (s8ReceivedKey == CLEAR)
 				{ /*Clearing Everything to start over*/
 					s32Number = 0;
