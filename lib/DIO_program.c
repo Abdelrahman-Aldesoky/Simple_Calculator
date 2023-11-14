@@ -4,8 +4,8 @@
 /****************Date:16/08/2023.****************/
 /************************************************/
 
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "../inc/STD_TYPES.h"
+#include "../inc/BIT_MATH.h"
 #include "DIO_private.h"
 #include "DIO_config.h"
 #include "DIO_interface.h"

@@ -4,12 +4,12 @@
  *      Author: Abdelrahman Mohamed.
  */
 
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
+#include "../inc/BIT_MATH.h"
+#include "../inc/STD_TYPES.h"
+#include "../lib/KPD_interface.h"
+#include "../lib/CLCD_interface.h"
+#include "../lib/CALCULATOR_interface.h"
 #include <util/delay.h>
-#include "KPD_interface.h"
-#include "CLCD_interface.h"
-#include "CALCULATOR_interface.h"
 
 int main(void)
 {

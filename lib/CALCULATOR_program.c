@@ -4,13 +4,13 @@
 /****************Date:02/09/2023.****************/
 /************************************************/
 
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
-#include <util/delay.h>
+#include "../inc/BIT_MATH.h"
+#include "../inc/STD_TYPES.h"
 #include "CLCD_interface.h"
 #include "KPD_interface.h"
 #include "HORSE_interface.h"
 #include "CALCULATOR_interface.h"
+#include <util/delay.h>
 
 
 /*CALC_voidInit

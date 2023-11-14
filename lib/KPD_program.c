@@ -4,13 +4,13 @@
 /****************Date:23/08/2023.****************/
 /************************************************/
 
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
-#include <util/delay.h>
+#include "../inc/STD_TYPES.h"
+#include "../inc/BIT_MATH.h"
 #include "DIO_interface.h"
 #include "KPD_private.h"
 #include "KPD_config.h"
 #include "KPD_interface.h"
+#include <util/delay.h>
 
 /*KPD INITIALIZING
  * setting up the directions of keypad pins as an input or output

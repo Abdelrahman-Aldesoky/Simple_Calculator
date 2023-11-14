@@ -4,14 +4,14 @@
 /****************Date:03/09/2023.****************/
 /************************************************/
 
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
-#include <util/delay.h>
+#include "../inc/STD_TYPES.h"
+#include "../inc/BIT_MATH.h"
 #include "DIO_interface.h"
 #include "CLCD_interface.h"
 #include "HORSE_private.h"
 #include "HORSE_config.h"
 #include "HORSE_interface.h"
+#include <util/delay.h>
 
 /*Stolen from the Internet with minor modifications
  *Credit to YouTube channel: Teach Me Something
