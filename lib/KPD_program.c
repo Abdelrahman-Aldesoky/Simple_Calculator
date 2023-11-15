@@ -34,31 +34,29 @@ void KPD_voidInit(void)
 	DIO_voidSetPortValue(KPD_PORT, PORT_VALUE_HIGH);
 }
 
-
 s8 KPD_u8GetPressedKey(void)
 {
-	u8 Local_u8Col=0,Local_u8Row=0;
-	u8 Local_u8Reading=0;
-	s8 Local_u8Key=DEFAULT_VALUE;								//just any value since i need to use zero in my keypad
-	u8 KPD_u8Values[MAX_ROW][MAX_COL]=KPD_VALUES;
+	u8 Local_u8Col = 0, Local_u8Row = 0;
+	u8 Local_u8Reading = 0;
+	s8 Local_u8Key = DEFAULT_VALUE; // just any value since i need to use zero in my keypad
+	u8 KPD_u8Values[MAX_ROW][MAX_COL] = KPD_VALUES;
 
-	for(Local_u8Col=COL_INIT;Local_u8Col<COL_FIN;Local_u8Col++)
+	for (Local_u8Col = COL_INIT; Local_u8Col < COL_FIN; Local_u8Col++)
 	{
-		DIO_voidSetPinValue(KPD_PORT, Local_u8Col,PIN_VALUE_LOW);
-		for(Local_u8Row=ROW_INIT;Local_u8Row<ROW_FIN;Local_u8Row++)
+		DIO_voidSetPinValue(KPD_PORT, Local_u8Col, PIN_VALUE_LOW);
+		for (Local_u8Row = ROW_INIT; Local_u8Row < ROW_FIN; Local_u8Row++)
 		{
-			Local_u8Reading=DIO_u8GetPinValue(KPD_PORT, Local_u8Row+MAX_COL);
-			if(Local_u8Reading==PIN_VALUE_LOW)
+			Local_u8Reading = DIO_u8GetPinValue(KPD_PORT, Local_u8Row + MAX_COL);
+			if (Local_u8Reading == PIN_VALUE_LOW)
 			{
 				_delay_ms(5);
-				Local_u8Key=KPD_u8Values[Local_u8Row][Local_u8Col];
+				Local_u8Key = KPD_u8Values[Local_u8Row][Local_u8Col];
 			}
-			while(DIO_u8GetPinValue(KPD_PORT, Local_u8Row+4)==PIN_VALUE_LOW)			//stay here till the user let go of the button
+			while (DIO_u8GetPinValue(KPD_PORT, Local_u8Row + 4) == PIN_VALUE_LOW) // stay here till the user let go of the button
 			{
-
 			}
 		}
-		DIO_voidSetPinValue(KPD_PORT, Local_u8Col,PIN_VALUE_HIGH);
+		DIO_voidSetPinValue(KPD_PORT, Local_u8Col, PIN_VALUE_HIGH);
 	}
 	return Local_u8Key;
 }

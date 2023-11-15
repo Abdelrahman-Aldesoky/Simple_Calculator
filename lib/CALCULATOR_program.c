@@ -12,7 +12,6 @@
 #include "CALCULATOR_interface.h"
 #include <util/delay.h>
 
-
 /*CALC_voidInit
  * 1-initializes the keypad
  * 2-initializes the LCD
@@ -39,7 +38,7 @@ void CALC_voidInit(void)
 	HORSE_Animation();
 
 	/*Custom Char for the LCD "Loading Bar" Useless ignore*/
-	u8 Custom_Char_Loading[8] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF , 0xFF, 0xFF, 0xFF };
+	u8 Custom_Char_Loading[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 	_delay_ms(5);
 
 	/*Clear LCD*/
@@ -66,7 +65,7 @@ void CALC_voidInit(void)
 	CLCD_voidSetPostion(SECOND_LINE, 0);
 
 	/*Loop to display loading bars 16 of them till the end of LCD*/
-	for(u8 Local_Iterator=0;Local_Iterator<16;Local_Iterator++)
+	for (u8 Local_Iterator = 0; Local_Iterator < 16; Local_Iterator++)
 	{
 		/*Display custom char stored in the RAM at position 0 which is a Loading Bar*/
 		CLCD_voidSendData(0x00);
@@ -88,16 +87,16 @@ void CALC_voidInit(void)
  *input of the function is copy of s32number and copy of s8recievedkey from the user
  *function returns s32Number to be captured by s32Number variable in main.
  */
-s32 CALC_GetNumber(s32 Copy_s32Number,s8 Copy_s8ReceivedKey)
+s32 CALC_GetNumber(s32 Copy_s32Number, s8 Copy_s8ReceivedKey)
 {
-	s32 Local_s32Number=Copy_s32Number;
-	if(Local_s32Number)
+	s32 Local_s32Number = Copy_s32Number;
+	if (Local_s32Number)
 	{
-		Local_s32Number=(Local_s32Number*10)+Copy_s8ReceivedKey;
+		Local_s32Number = (Local_s32Number * 10) + Copy_s8ReceivedKey;
 	}
 	else
 	{
-		Local_s32Number=Copy_s8ReceivedKey;
+		Local_s32Number = Copy_s8ReceivedKey;
 	}
 	return Local_s32Number;
 }
@@ -105,26 +104,26 @@ s32 CALC_GetNumber(s32 Copy_s32Number,s8 Copy_s8ReceivedKey)
 /*Display stuff in specific format
  * this took more time than i care to admit
  * way more time than the actual calculator program :(*/
-void CALC_Display(s64 Copy_s64Result,s32 Copy_s32Number,s8 Copy_s8LastOPeration,s8 Copy_s8ReceivedKey)
+void CALC_Display(s64 Copy_s64Result, s32 Copy_s32Number, s8 Copy_s8LastOPeration, s8 Copy_s8ReceivedKey)
 {
-		CLCD_voidSendCommand(DISPLAY_CLEAR);
-		if(Copy_s64Result || Copy_s8LastOPeration)
-		{
-			CLCD_voidSendNumber(Copy_s64Result);
-		}
-		if((DISPLAY_CALCULATION)||(DIS_CALC))
-		{
-			CLCD_voidSendData(Copy_s8LastOPeration);
-		}
-		if(Copy_s32Number)
-		{
-			CLCD_voidSendNumber(Copy_s32Number);
-		}
-		else if(DISPLAY_NUMBER && Copy_s8LastOPeration!=EQUAL)
-		{
-			CLCD_voidSendNumber(Copy_s8ReceivedKey);
-		}
-		GO_TO_SECOND_LINE;
-		CLCD_voidSendData(EQUAL);
+	CLCD_voidSendCommand(DISPLAY_CLEAR);
+	if (Copy_s64Result || Copy_s8LastOPeration)
+	{
 		CLCD_voidSendNumber(Copy_s64Result);
+	}
+	if ((DISPLAY_CALCULATION) || (DIS_CALC))
+	{
+		CLCD_voidSendData(Copy_s8LastOPeration);
+	}
+	if (Copy_s32Number)
+	{
+		CLCD_voidSendNumber(Copy_s32Number);
+	}
+	else if (DISPLAY_NUMBER && Copy_s8LastOPeration != EQUAL)
+	{
+		CLCD_voidSendNumber(Copy_s8ReceivedKey);
+	}
+	GO_TO_SECOND_LINE;
+	CLCD_voidSendData(EQUAL);
+	CLCD_voidSendNumber(Copy_s64Result);
 }

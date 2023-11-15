@@ -46,6 +46,9 @@
  * the ones here are mapped to my Keypad actual hardware
  * u can set it up same as your hardware
  * note don't use the default value in your matrix or it will keep returning said value */
-#define KPD_VALUES 	{{7,8,9,'/'},{4,5,6,'*'},{1,2,3,'-'},{'C',0,'=','+'}}
+#define KPD_VALUES                                                           \
+    {                                                                        \
+        {7, 8, 9, '/'}, {4, 5, 6, '*'}, {1, 2, 3, '-'}, { 'C', 0, '=', '+' } \
+    }
 
 #endif
